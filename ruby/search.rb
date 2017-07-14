@@ -61,7 +61,6 @@ def main
           playlists << "#{search_result.snippet.title} (#{search_result.id.playlistId})"
       end
     end
-
     puts "Videos:\n", videos, "\n"
     puts "Channels:\n", channels, "\n"
     puts "Playlists:\n", playlists, "\n"
@@ -69,5 +68,4 @@ def main
     puts e.result.body
   end
 end
-
 main
