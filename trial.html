@@ -1,0 +1,101 @@
+<html>
+<head>
+<title >Jira Frequency</title>
+<script type="text/javascript" src="js/cviz-4.1.0.min.js"></script>
+<link rel="stylesheet" href="css/cviz-4.1.0.min.css">
+<link rel="stylesheet" href="css/customStyle.css">
+<style>
+.scatter-plot .label{
+	font-style: normal;
+	font-weight: lighter;
+}
+</style>
+</head>
+<body bgcolor="#ffffff">
+
+<script type="text/javascript">
+    cviz.jQuery(document).ready(function () {
+  function drawGroupedColumn(data){       
+      var graphRunner = cviz.widget.GroupedColumn.Runner ({
+	id : '1',
+	container : {
+               id : '#jirasnapshot', 
+               title : 'Jira Snapshot Chart', 
+               titlePos :15,
+               titleTooltip : 'Jira Snapshot', 
+               width : 1500, 
+               height : 450,
+               showGrid : 'yes',               
+               contextBrush:'yes',
+               showLines: 'yes'
+        },
+	bindings : {
+               x : 'sprintName', 
+               y : 'count', 
+               item : 'status',	
+               group : 'status'
+        },
+	margin: {
+               top: 50, 
+               right: 70, 
+               bottom:50, 
+               left: 54
+        },
+	scaling : { x : 4, y : 1 },
+	scaleFormat : { x: ' ', y: ' ' },
+	ticks : { y : 5 },	
+	tickerAngle : { x : 0 },
+	columnGloss : 'no',
+	padding : 0.4,
+	innerPadding : 0.1,
+   
+                      
+	labels : { x : 'sprintName', y : 'count' },
+	colors: { 'Done' : 'darkgreen',
+                      'In Progress' : 'orange',
+                      'Backlog': 'red'
+             },
+	legend : {
+               position: 'right',
+	       height: 85,
+	       width: 80,
+	       itemsPerRow: 1,
+	       itemDimension: 20	    
+	 },		
+	tooltip : {             
+	    bindings : [{
+	        label : 'count',
+	        bindWith : 'count'                
+	    },{
+	        label : 'status',
+	        bindWith : 'status'                
+	    }]
+     }
+     }).graph().render(data);
+ 
+  }
+
+	var mdata = 
+  
+   [{"projectName":"KPI Dashboard","sprintName":"KD Sprint 1","status":"Done","count":1},{"projectName":"KPI Dashboard","sprintName":"KD Sprint 1","status":"In Progress","count":3},{"projectName":"KPI Dashboard","sprintName":"KD Sprint 1","status":"Backlog","count":5},{"projectName":"KPI Dashboard","sprintName":"KD Sprint 2","status":"In Progress","count":1},{"projectName":"KPI Dashboard","sprintName":"KD Sprint 2","status":"Done","count":2},{"projectName":"KPI Dashboard","sprintName":"KD Sprint 3","status":"Done","count":3},{"projectName":"KPI Dashboard","sprintName":"KD Sprint 4","status":"Done","count":4},{"projectName":"KPI Dashboard","sprintName":"KD Sprint 5","status":"Done","count":3},{"projectName":"KPI Dashboard","sprintName":"KD Sprint 6","status":"Done","count":2},{"projectName":"KPI Dashboard","sprintName":"KD Sprint 7","status":"In Progress","count":20},{"projectName":"KPIProject","sprintName":"KPIP Sprint 1","status":"Done","count":3},{"projectName":"Cash Plans","sprintName":"CASHPSprint2","status":"Backlog","count":1}]
+
+		
+		drawGroupedColumn(mdata);
+		
+    });
+</script>
+<div class="title"><b>Jira Feature Frequency</b></div>
+<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div>
+<div style="float: left;width:100%;position: relative;font-family: 'Arial', 'Open Sans', sans-serif;font-size: 13px" ><b>Jira Feature Applications:</b>
+<select name="dropdown"><option value="All" selected>All</option>
+<option value="KPI Dashboard">KPI Dashboard</option>
+<option value="KPIProject">KPIProject</option>
+<option value="Cash Plans">Cash Plans</option>
+</select></div>
+<div id="jirasnapshot" style="float:left;position: relative;width: 100%"></div>
+<div class="link" style="width: 50%"><a href="Buildfrequency.html" style="color:black">Detailed Jira Graph</a></div>
+</body>
+</html>
+
+
+
